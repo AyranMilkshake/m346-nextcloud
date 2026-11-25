@@ -17,7 +17,17 @@ Nextcloud (Community Edition, Archiv-Variante, ohne Docker, ohne Web Installer) 
 4. [Projektorganisation und Aufgabenverteilung](docs/04-projektorganisation.md)
 5. [Git-Workflow und Commit-Konventionen](docs/05-git-workflow.md)
 
-## Quickstart (3 Schritte)
+## Quickstart AWS (1 Befehl)
+
+Voraussetzung: [AWS CLI v2](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) mit gültigen Credentials (z. B. aus dem AWS Academy Learner Lab).
+
+```bash
+./scripts/deploy-aws.sh
+```
+
+Das Skript legt Security Groups an, startet DB- und Web-Server mit Cloud-Init, wartet bis der Installationsassistent erreichbar ist und gibt URL und Datenbank-Angaben aus. Aufräumen mit `./scripts/destroy-aws.sh`.
+
+## Quickstart manuell (beliebige Cloud)
 
 ```bash
 # 1. Cloud-Init-Dateien erzeugen (Web-Subnetz, interne IP des DB-Servers)
@@ -42,11 +52,14 @@ Details und Cloud-spezifische Hinweise: [docs/02-inbetriebnahme.md](docs/02-inbe
 .
 ├── README.md
 ├── .gitignore               # rendered/ (enthält Passwörter) wird nie eingecheckt
+├── .github/workflows/       # CI: ShellCheck + Validierung der Cloud-Init-Dateien
 ├── scripts/
+│   ├── deploy-aws.sh        # komplette Bereitstellung in AWS per CLI
+│   ├── destroy-aws.sh       # entfernt alle AWS-Ressourcen des Projekts
 │   ├── render.sh            # erzeugt Cloud-Init-Dateien inkl. zufälliger Passwörter
 │   ├── install-db.sh        # MariaDB installieren, absichern, Firewall
 │   └── install-web.sh       # Apache + PHP + Nextcloud-Archiv, Verbindungstest, IP-Ausgabe
-└── docs/                    # Dokumentation (Markdown)
+└── docs/                    # Dokumentation (Markdown), Screenshots in docs/img/
 ```
 
 ## Voraussetzungen
@@ -55,3 +68,4 @@ Details und Cloud-spezifische Hinweise: [docs/02-inbetriebnahme.md](docs/02-inbe
 - Web-Server mit öffentlicher IP, Security Group: 22, 80, 443 eingehend
 - DB-Server **ohne** öffentliche Erreichbarkeit der Port 3306 (nur Web-Subnetz)
 - `bash`, `openssl`, `python3` auf dem Rechner, auf dem `render.sh` läuft
+- Für `deploy-aws.sh` zusätzlich `aws` (CLI v2) und `curl`; die Default-VPC wird verwendet

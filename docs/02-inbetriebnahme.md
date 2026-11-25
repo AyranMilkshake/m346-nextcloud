@@ -1,6 +1,40 @@
 # 2. Inbetriebnahme
 
-## 2.1 Netz vorbereiten
+Es gibt zwei Wege: **automatisch mit AWS** (empfohlen, Kapitel 2.0) oder **manuell** in einer beliebigen Cloud (Kapitel 2.1-2.3).
+
+## 2.0 Automatisch mit AWS
+
+```bash
+git clone https://github.com/AyranMilkshake/m346-nextcloud.git && cd m346-nextcloud
+aws configure            # bzw. Learner-Lab-Credentials nach ~/.aws/credentials kopieren
+./scripts/deploy-aws.sh
+```
+
+| Schritt | Was `deploy-aws.sh` macht |
+|---|---|
+| 1 | Default-VPC und ein Default-Subnetz ermitteln |
+| 2 | Security Groups `m346-nextcloud-web` (22/80/443 öffentlich) und `m346-nextcloud-db` (3306 und 22 **nur** von der Web-SG) anlegen |
+| 3 | Aktuelles Ubuntu-24.04-Image von Canonical suchen |
+| 4 | Freie interne IP für den DB-Server wählen und `render.sh` aufrufen |
+| 5 | DB-Server (feste interne IP) und Web-Server (öffentliche IP) mit Cloud-Init starten |
+| 6 | Warten, bis `http://<IP>/` den Installationsassistenten zeigt (max. 15 Min) |
+| 7 | URL und Datenbank-Angaben ausgeben |
+
+Optionale Variablen:
+
+| Variable | Standard | Zweck |
+|---|---|---|
+| `REGION` | aus `aws configure`, sonst `us-east-1` | AWS-Region |
+| `KEY_NAME` | leer | Key Pair für SSH, im Learner Lab `vockey` |
+| `WEB_TYPE` / `DB_TYPE` | `t3.small` | Instanztypen |
+
+Beispiel: `KEY_NAME=vockey ./scripts/deploy-aws.sh`
+
+Aufräumen: `./scripts/destroy-aws.sh` (beendet alle Instanzen mit Tag `Project=m346-nextcloud` und löscht die Security Groups).
+
+> **Hinweis:** Der DB-Server erhält im Default-Subnetz eine öffentliche IP, damit er Pakete installieren kann. Die Security Group lässt eingehend aber nur Verbindungen vom Web-Server zu, MariaDB lauscht nur auf der internen IP.
+
+## 2.1 Netz vorbereiten (manuell)
 
 1. Privates Netz/Subnetz anlegen, z. B. `10.0.1.0/24`.
 2. Security Groups:
