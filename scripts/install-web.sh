@@ -107,8 +107,11 @@ done
 
 # --- Webserver testen --------------------------------------------------------
 HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' http://localhost/ || true)
+# Seite zuerst in eine Variable lesen: "curl | grep -q" kann mit pipefail
+# durch SIGPIPE faelschlich fehlschlagen.
+PAGE=$(curl -sL http://localhost/ || true)
 WIZARD_OK="NEIN"
-if curl -sL http://localhost/ | grep -qi 'nextcloud'; then WIZARD_OK="JA"; fi
+if grep -qi 'nextcloud' <<<"$PAGE"; then WIZARD_OK="JA"; fi
 
 # --- IP-Adresse(n) ermitteln --------------------------------------------------
 LOCAL_IP=$(ip -4 route get 1.1.1.1 | awk '{for(i=1;i<=NF;i++) if($i=="src"){print $(i+1); exit}}')
