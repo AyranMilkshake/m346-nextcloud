@@ -1,13 +1,13 @@
 # M346 Projekt: Nextcloud in der Cloud
 
-Nextcloud (Community Edition, Archiv-Variante, **ohne Docker, ohne Web Installer**) auf zwei getrennten Servern, vollständig als Infrastructure as Code (Cloud-Init + Bash).
+Nextcloud (Community Edition, Archiv-Variante, (ohne Docker, ohne Web Installer) auf zwei getrennten Servern, vollständig als Infrastructure as Code (Cloud-Init + Bash).
 
 | | |
 |---|---|
-| Modul | 346 Cloudlösungen konzipieren und realisieren, GBS St.Gallen |
-| Gruppe | `[Name A]`, `[Name B]`, `[Name C]` |
-| Lehrperson | `[Name]` (Repository-Zugriff erteilt) |
-| Cloud-Anbieter | `[z. B. AWS / Azure / Infomaniak]` |
+| Modul | 346 Cloudlösungen konzipieren und realisieren |
+| Gruppe | `Ayan Basalamah`, `Samiullah Safi` |
+| Lehrperson | `Oliver Lux` |
+| Cloud-Anbieter | `AWS` |
 
 ## Inhalt
 
