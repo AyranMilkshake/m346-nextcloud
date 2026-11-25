@@ -1,6 +1,6 @@
 # M346 Projekt: Nextcloud in der Cloud
 
-Nextcloud (Community Edition, Archiv-Variante, (ohne Docker, ohne Web Installer) auf zwei getrennten Servern, vollständig als Infrastructure as Code (Cloud-Init + Bash).
+Nextcloud (Community Edition, Archiv-Variante, ohne Docker, ohne Web Installer) auf zwei getrennten Servern, vollständig als Infrastructure as Code (Cloud-Init + Bash).
 
 | | |
 |---|---|
