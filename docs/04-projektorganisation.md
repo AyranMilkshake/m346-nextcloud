@@ -6,12 +6,12 @@ Zur Verfügung stehen 3 × 2 Lektionen im Unterricht.
 
 | Bereich | Verantwortlich | Weitere Beteiligte (Review) |
 |---|---|---|
-| DB-Server: `install-db.sh`, Firewall, Root-Absicherung | `[Name A]` | `[Name B]` |
-| Web-Server: `install-web.sh`, Apache, PHP, Nextcloud | `[Name B]` | `[Name C]` |
-| Automatisierung: `render.sh`, Cloud-Init, Cloud-Setup (Netz, Security Groups) | `[Name C]` | `[Name A]` |
-| Doku: README, Architektur, Inbetriebnahme | `[Name C]` | `[Name A]` |
-| Tests und Testprotokoll | `[Name A]` | `[Name B]` |
-| Git-Verwaltung: Branch-Schutz, Pull-Request-Regeln, Lehrperson einladen | `[Name B]` | alle |
+| DB-Server: `install-db.sh`, Firewall, Root-Absicherung | `Ayan Basalamah` | `Samiullah Safi` |
+| Web-Server: `install-web.sh`, Apache, PHP, Nextcloud | `[Name B]` | `Samiullah Safi` |
+| Automatisierung: `render.sh`, Cloud-Init, Cloud-Setup (Netz, Security Groups) | `Samiullah Safi` | `Ayan Basalamah` |
+| Doku: README, Architektur, Inbetriebnahme | `Samiullah Safi` | `Ayan Basalamah` |
+| Tests und Testprotokoll | `Ayan Basalamah` | `Samiullah Safi` |
+| Git-Verwaltung: Branch-Schutz, Pull-Request-Regeln | `Ayan Basalamah` | alle |
 
 ## 4.2 Zeitplan
 
