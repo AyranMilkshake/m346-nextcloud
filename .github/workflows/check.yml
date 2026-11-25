@@ -1,0 +1,29 @@
+name: Skripte pruefen
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ShellCheck
+        run: shellcheck scripts/*.sh
+
+      - name: Cloud-Init rendern und validieren
+        run: |
+          ./scripts/render.sh 10.0.1.0/24 10.0.1.10
+          for f in rendered/*.yaml; do
+            head -n1 "$f" | grep -qx '#cloud-config'
+            python3 -c 'import sys, yaml; yaml.safe_load(open(sys.argv[1]))' "$f"
+            size=$(wc -c < "$f")
+            echo "$f: $size Bytes"
+            [ "$size" -lt 16384 ]   # AWS-Limit fuer User Data
+          done
+
+      - name: Keine Secrets im Repository
+        run: |
+          ! git ls-files | grep -E '^rendered/|\.env$'
