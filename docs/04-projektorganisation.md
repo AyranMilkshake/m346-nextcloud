@@ -7,7 +7,7 @@ Zur Verfügung stehen 3 × 2 Lektionen im Unterricht.
 | Bereich | Verantwortlich | Weitere Beteiligte (Review) |
 |---|---|---|
 | DB-Server: `install-db.sh`, Firewall, Root-Absicherung | `Ayan Basalamah` | `Samiullah Safi` |
-| Web-Server: `install-web.sh`, Apache, PHP, Nextcloud | `[Name B]` | `Samiullah Safi` |
+| Web-Server: `install-web.sh`, Apache, PHP, Nextcloud | `Ayan Basalamah` | `Samiullah Safi` |
 | Automatisierung: `render.sh`, Cloud-Init, Cloud-Setup (Netz, Security Groups) | `Samiullah Safi` | `Ayan Basalamah` |
 | Doku: README, Architektur, Inbetriebnahme | `Samiullah Safi` | `Ayan Basalamah` |
 | Tests und Testprotokoll | `Ayan Basalamah` | `Samiullah Safi` |
