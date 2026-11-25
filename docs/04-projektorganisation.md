@@ -10,7 +10,7 @@ Zur Verfügung stehen 3 × 2 Lektionen im Unterricht.
 | Web-Server: `install-web.sh`, Apache, PHP, Nextcloud | `Ayan Basalamah` | `Samiullah Safi` |
 | Automatisierung: `render.sh`, Cloud-Init, Cloud-Setup (Netz, Security Groups) | `Samiullah Safi` | `Ayan Basalamah` |
 | Doku: README, Architektur, Inbetriebnahme | `Samiullah Safi` | `Ayan Basalamah` |
-| Tests und Testprotokoll | `Ayan Basalamah` | `Samiullah Safi` |
+| Tests und Testprotokoll | `Samiullah Safi` | `Ayan Basalamah` |
 | Git-Verwaltung: Branch-Schutz, Pull-Request-Regeln | `Ayan Basalamah` | `Samiullah Safi` |
 
 ## 4.2 Zeitplan
