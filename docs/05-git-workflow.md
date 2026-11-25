@@ -39,7 +39,7 @@ Format: `<typ>(<bereich>): <kurze Beschreibung im Präsens>`
 | `refactor` | Umbau ohne Verhaltensänderung |
 | `chore` | Sonstiges (z. B. `.gitignore`) |
 
-Bereiche: `db`, `web`, `render`, `readme`, `docs`.
+Bereiche: `db`, `web`, `render`, `aws`, `ci`, `readme`, `docs`, `tests`.
 
 Beispiele:
 
@@ -51,7 +51,19 @@ docs(tests): Screenshots für T1-T3 ergänzt
 
 Pro Commit eine logische Änderung, keine Sammel-Commits wie "update" oder "fix".
 
-## 5.5 Checkliste vor Abgabe
+## 5.5 Automatische Prüfung (CI)
+
+Bei jedem Push und Pull Request läuft die GitHub Action [`check.yml`](../.github/workflows/check.yml):
+
+| Prüfung | Zweck |
+|---|---|
+| ShellCheck | Fehler in den Bash-Skripten früh erkennen |
+| `render.sh` + YAML-Validierung | Cloud-Init-Dateien sind gültig und unter dem AWS-Limit von 16 KB |
+| Secret-Check | `rendered/` und `.env`-Dateien sind nicht eingecheckt |
+
+Ein Pull Request wird erst gemergt, wenn die Prüfung grün ist.
+
+## 5.6 Checkliste vor Abgabe
 
 - [ ] Lehrperson hat Zugriff aufs Repository
 - [ ] Alle Pull Requests gemergt, `main` ist lauffähig

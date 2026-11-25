@@ -30,10 +30,12 @@ flowchart LR
 | Root-Zugang DB | Passwort zusätzlich zu `unix_socket`, Passwort zufällig (24 Zeichen) | Kriterium A4: Root mit sicherem Passwort |
 | Passwörter | pro Rendering zufällig, nur in `rendered/` (gitignored) | Keine Secrets im Repository |
 | Automatisierung | Cloud-Init führt Bash-Skripte aus | Kriterium A5, funktioniert bei jedem Cloud-Anbieter |
+| Bereitstellung AWS | `deploy-aws.sh` mit AWS CLI, Security Group der DB erlaubt nur die Web-SG als Quelle | Ein Befehl genügt (Kriterium A1), Zugriff auf die DB hängt nicht von IP-Bereichen ab |
 | Datenbank-Konfiguration | `READ-COMMITTED`, `binlog_format=ROW`, `utf8mb4` | Empfehlungen aus der Nextcloud-Admin-Doku |
 
 ## 1.3 Ablauf der Automatisierung
 
+0. Optional: `deploy-aws.sh` übernimmt die Schritte 1-2 und das Starten der Server in AWS.
 1. `render.sh` erzeugt zwei `user-data`-Dateien. Diese enthalten die Konfiguration und das jeweilige Install-Skript.
 2. Beim ersten Boot schreibt Cloud-Init die Dateien und startet das Skript per `runcmd`.
 3. **DB-Server:** MariaDB installieren, an interne IP binden, Datenbank und Benutzer anlegen, Root-Passwort setzen, Firewall aktivieren.
